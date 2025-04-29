@@ -76,6 +76,15 @@ AdminPanelFetcher focuses on **speed**, **reliability**, and **accuracy** while 
 
 ---
 
+## Screenshots
+
+![1](https://github.com/user-attachments/assets/bcf6126f-9eee-455a-8429-d0ecd8026ba7)
+![2](https://github.com/user-attachments/assets/88ff852a-c643-479e-9583-ce17a4a09487)
+
+
+
+---
+
 # Compatibility: 
 
 This tool has been tested on Kali Linux
