@@ -80,6 +80,7 @@ AdminPanelFetcher focuses on **speed**, **reliability**, and **accuracy** while 
 - Color-coded live scan results
 - Only real 200 OK pages saved
 - Fancy banners, motivational quotes, rainbow CLI styling
+- Over 10,000+ Wordlists Specifically Aimed for Admin Panel Search
 
 ---
 
