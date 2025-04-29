@@ -16,6 +16,13 @@
 
 ---
 
+<p align="center">
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnFyZDBza3luMnl2c2gwNDcwMmp3YTY5YnA0dWI0ZjBocmR2Z3J0byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11shDO8NnZDYpa/giphy.gif" width="500px" alt="Matrix Animation">
+</p>
+
+
+---
+
 ## Description
 
 **AdminPanelFetcher** is a professional-grade tool to find hidden admin panels on web applications.  
