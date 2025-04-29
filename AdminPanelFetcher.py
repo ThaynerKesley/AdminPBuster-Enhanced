@@ -72,7 +72,7 @@ def print_help_colored():
     print(colored(f"Author: {AUTHOR}", "yellow"))
     print(colored(f"Team: {TEAM}\n", "yellow"))
 
-    print(colored("Usage: ", "cyan", attrs=["bold"]) + colored("./admin_panel_fetcher.py -t example.com", "white"))
+    print(colored("Usage: ", "cyan", attrs=["bold"]) + colored("./AdminPanelFetcher.py -t example.com", "white"))
     print(colored("(Give domain only without brackets or https)\n", "yellow"))
 
     print(colored("Options:", "cyan", attrs=["bold"]))
