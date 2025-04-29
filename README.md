@@ -130,18 +130,18 @@ This tool has been tested on Kali Linux
   - `requests`
   - `termcolor`
   - `urllib3`
-- Makes `admin_panel_fetcher.py` executable automatically
+- Makes `AdminPanelFetcher.py` executable automatically
 
 After installation, simply run:
 
 ```bash
-./admin_panel_fetcher.py -t example.com -th 10
+./AdminPanelFetcher.py -t example.com -th 10
 ```
 
 Optionally with randomized User-Agent:
 
 ```bash
-./admin_panel_fetcher.py -t example.com -th 10 -ua
+./AdminPanelFetcher.py -t example.com -th 10 -ua
 ```
 
 ---
