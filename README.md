@@ -25,20 +25,20 @@
 
 ## Description
 
-**AdminPBuster** is a professional-grade tool to find hidden admin panels on web applications.  
+**AdminPBuster** is a Red Teaming Recon tool to find hidden admin panels on web applications using brute-forcing.  
 Instead of bundling a static wordlist and bloating the tool, it **fetches an updated admin panel wordlist** directly from our GitHub repository.
 
 - This keeps the tool **lightweight** and **easy to maintain**.
 - Whenever we update the hosted wordlist, **the tool automatically benefits**, without needing to update the script itself.
 
-**Key technical improvements:**
+**Key technical goodies:**
 - Multithreaded scanning using curl
 - Proper HTTPS and `www.` handling to fix SSL issues
-- Real redirect following (`-L` curl flag) bypasses WAFs and Cloudflare protections
+- Real redirect following (`-L` curl flag) bypasses WAFs and Cloudflare protections and log only the valid 200 Responses
 - No proxychains/Tor dependency (due to their unreliability for professional offensive operations)
 - Optional randomized User-Agent headers (`-ua`) to simulate real traffic
 
-AdminPBuster focuses on **speed**, **reliability**, and **accuracy** while staying very simple to operate.
+AdminPBuster focuses on **speed**, **reliability**, and **accuracy** while staying very simple to operate going through 10,000+ wordlists.
 
 ---
 
@@ -79,7 +79,7 @@ AdminPBuster focuses on **speed**, **reliability**, and **accuracy** while stayi
 - SSL/TLS handling built-in (always uses HTTPS + www)
 - Color-coded live scan results
 - Only real 200 OK pages saved
-- Fancy banners, motivational quotes, rainbow CLI styling
+- Fancy banners, motivational quotes, rainbow CLI styling, because we love colors!
 - Over 10,000+ Wordlists Specifically Aimed for Admin Panel Search
 
 ---
