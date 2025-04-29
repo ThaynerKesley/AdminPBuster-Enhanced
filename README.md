@@ -1,4 +1,4 @@
-# BHEH's AdminPanelFetcher
+# BHEH's AdminPBuster
 
 <p align="center">
 <a href="https://www.blackhatethicalhacking.com"><img src="https://www.blackhatethicalhacking.com/wp-content/uploads/2022/06/BHEH_logo.png" width="300px" alt="BHEH"></a>
@@ -6,13 +6,13 @@
 
 <p align="center">
 
-**If you think you can hide your Admin Panel, think again... Find it with AdminPanelFetcher.**
+**If you think you can hide your Admin Panel, think again... Find it with AdminPBuster.**
 
 </p>
 
 ---
 
-**AdminPanelFetcher** is written by **Chris "SaintDruG" Abou-Chabke** from **Black Hat Ethical Hacking** and is designed specifically for **Red Teams**, **Offensive Security Experts**, and **Bug Bounty Hunters** looking to discover hidden or obscured admin panels efficiently.
+**AdminPBuster** is written by **Chris "SaintDruG" Abou-Chabke** from **Black Hat Ethical Hacking** and is designed specifically for **Red Teams**, **Offensive Security Experts**, and **Bug Bounty Hunters** looking to discover hidden or obscured admin panels efficiently.
 
 ---
 
@@ -25,7 +25,7 @@
 
 ## Description
 
-**AdminPanelFetcher** is a professional-grade tool to find hidden admin panels on web applications.  
+**AdminPBuster** is a professional-grade tool to find hidden admin panels on web applications.  
 Instead of bundling a static wordlist and bloating the tool, it **fetches an updated admin panel wordlist** directly from our GitHub repository.
 
 - This keeps the tool **lightweight** and **easy to maintain**.
@@ -38,7 +38,7 @@ Instead of bundling a static wordlist and bloating the tool, it **fetches an upd
 - No proxychains/Tor dependency (due to their unreliability for professional offensive operations)
 - Optional randomized User-Agent headers (`-ua`) to simulate real traffic
 
-AdminPanelFetcher focuses on **speed**, **reliability**, and **accuracy** while staying very simple to operate.
+AdminPBuster focuses on **speed**, **reliability**, and **accuracy** while staying very simple to operate.
 
 ---
 
@@ -103,7 +103,7 @@ This tool has been tested on Kali Linux
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/blackhatethicalhacking/AdminPanelFetcher.git
+   git clone https://github.com/blackhatethicalhacking/AdminPBuster.git
    cd AdminPanelFetcher
    ```
 
@@ -130,18 +130,18 @@ This tool has been tested on Kali Linux
   - `requests`
   - `termcolor`
   - `urllib3`
-- Makes `AdminPanelFetcher.py` executable automatically
+- Makes `AdminPBuster.py` executable automatically
 
 After installation, simply run:
 
 ```bash
-./AdminPanelFetcher.py -t example.com -th 10
+./AdminPBuster.py -t example.com -th 10
 ```
 
 Optionally with randomized User-Agent:
 
 ```bash
-./AdminPanelFetcher.py -t example.com -th 10 -ua
+./AdminPBuster.py -t example.com -th 10 -ua
 ```
 
 ---
