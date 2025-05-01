@@ -86,8 +86,7 @@ AdminPBuster focuses on **speed**, **reliability**, and **accuracy** while stayi
 
 ## Quick Demo Preview
 
-![adminPBuster](https://github.com/user-attachments/assets/8955c247-9b2f-4400-8cbc-fff37bd1a327)
-
+![Patreon_Title effect for teaserepisode ](https://github.com/user-attachments/assets/558e9472-08db-4f0d-9dcf-495861830689)
 
 ---
 
