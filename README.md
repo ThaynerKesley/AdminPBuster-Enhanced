@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # BHEH's AdminPBuster
+=======
+# AdminPBuster-Enhanced (Bug Bounty Edition) 🔎
+>>>>>>> 23b63c6 (feat: add enhanced version files)
 
 <p align="center">
 <a href="https://www.blackhatethicalhacking.com"><img src="https://www.blackhatethicalhacking.com/wp-content/uploads/2022/06/BHEH_logo.png" width="300px" alt="BHEH"></a>
@@ -6,12 +10,17 @@
 
 <p align="center">
 
+<<<<<<< HEAD
 **If you think you can hide your Admin Panel, think again... Find it with AdminPBuster.**
+=======
+**If you think you can hide your Admin Panel, think again... Find it with AdminPBuster-Enhanced.**
+>>>>>>> 23b63c6 (feat: add enhanced version files)
 
 </p>
 
 ---
 
+<<<<<<< HEAD
 **AdminPBuster** is written by **Chris "SaintDruG" Abou-Chabke** from **Black Hat Ethical Hacking** and is designed specifically for **Red Teams**, **Offensive Security Experts**, and **Bug Bounty Hunters** looking to discover hidden or obscured admin panels efficiently.
 
 ---
@@ -162,3 +171,23 @@ Hack with style and showcase your dedication to hacker culture with gear that’
 <img src="https://github.com/blackhatethicalhacking/blackhatethicalhacking/blob/main/Merch_Promo.gif" width="540px" height="540">
   </p>
 
+=======
+**AdminPBuster-Enhanced** is a fork of [AdminPBuster](https://github.com/blackhatethicalhacking/AdminPBuster), improved with a **Bug Bounty focus**.  
+It adds **custom header injection** and a **global requests-per-second limiter** to adapt the tool for real-world security testing scenarios.
+
+---
+
+## 🔧 New Features in This Fork
+
+- **Custom Headers (`--header`)**  
+  Add one or more HTTP headers to each request.  
+  Useful for:
+  - Testing authenticated endpoints
+  - Adding bug bounty identifiers
+  - Bypassing filters with custom values  
+  Example:
+  ```bash
+  python3 AdminPBuster.py -t target.com \
+    --header "Authorization: Bearer TOKEN123" \
+    --header "X-Intigriti-Username: hunter@intigriti.me"
+>>>>>>> 23b63c6 (feat: add enhanced version files)

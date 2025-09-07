@@ -9,6 +9,10 @@ import queue
 import argparse
 import time
 import random
+<<<<<<< HEAD
+=======
+import collections
+>>>>>>> 23b63c6 (feat: add enhanced version files)
 from threading import Thread, Lock
 from urllib.parse import urlparse
 import urllib3
@@ -76,10 +80,20 @@ def print_help_colored():
     print(colored("(Give domain only without brackets or https)\n", "yellow"))
 
     print(colored("Options:", "cyan", attrs=["bold"]))
+<<<<<<< HEAD
     print(colored("  -h, --help             ", "white") + "Show this help message and exit")
     print(colored("  -t, --target TARGET    ", "white") + "Target domain (e.g., example.com)")
     print(colored("  -th, --threads THREADS ", "white") + "Number of threads (default: 5)")
     print(colored("  -ua, --random-agent    ", "white") + "Use random realistic User-Agent\n")
+=======
+    print(colored("  -h, --help                     ", "white") + "Show this help message and exit")
+    print(colored("  -t, --target TARGET            ", "white") + "Target domain (e.g., example.com)")
+    print(colored("  -th, --threads THREADS         ", "white") + "Number of threads (default: 5)")
+    print(colored("  -ua, --random-agent            ", "white") + "Use random realistic User-Agent",)
+    print(colored("  --rps REQUESTS_PER_SECOND      ", "white") + "Global rate limit (requests per second)")
+    print(colored("  --header 'K: V'                ", "white") + "Custom header (repeatable)")
+    print(colored("  --timeout SECONDS              ", "white") + "Per-request timeout (default: 5)\n")
+>>>>>>> 23b63c6 (feat: add enhanced version files)
 
     print(colored("Written by ", "green") + colored("Chris 'SaintDruG' Abou-Chabke", "magenta") + colored(" for Black Hat Ethical Hacking", "green"))
     print(colored("© All Rights Reserved 2025 — Use For Ethical Testing Only.", "yellow"))
@@ -132,8 +146,42 @@ def color_for_status(code):
     else:
         return "magenta"
 
+<<<<<<< HEAD
 def scan_url(target_domain, path_queue, results, timeout=5, random_ua=False):
     global request_counter
+=======
+# -------- NEW: Simple global rate limiter (token bucket via deque) --------
+class RateLimiter:
+    def __init__(self, rps: int | None):
+        self.rps = rps if (isinstance(rps, int) and rps > 0) else None
+        self.lock = Lock()
+        self.timestamps = collections.deque()  # of monotonic timestamps
+
+    def acquire(self):
+        if not self.rps:
+            return
+        while True:
+            with self.lock:
+                now = time.monotonic()
+                # remove tokens older than 1s
+                while self.timestamps and (now - self.timestamps[0] >= 1.0):
+                    self.timestamps.popleft()
+                if len(self.timestamps) < self.rps:
+                    self.timestamps.append(now)
+                    return
+                # need to wait until the oldest token leaves the 1s window
+                sleep_for = 1.0 - (now - self.timestamps[0])
+            if sleep_for > 0:
+                time.sleep(sleep_for)
+            else:
+                # edge-case: loop again
+                time.sleep(0)
+
+def scan_url(target_domain, path_queue, results, timeout=5, random_ua=False, rate_limiter: RateLimiter | None = None, custom_headers: list[str] | None = None):
+    global request_counter
+    custom_headers = custom_headers or []
+
+>>>>>>> 23b63c6 (feat: add enhanced version files)
     while not path_queue.empty():
         path = path_queue.get()
 
@@ -144,15 +192,36 @@ def scan_url(target_domain, path_queue, results, timeout=5, random_ua=False):
 
         full_url = f"https://{fixed_domain.rstrip('/')}/{path.lstrip('/')}"
 
+<<<<<<< HEAD
+=======
+        # rate limit (global)
+        if rate_limiter:
+            rate_limiter.acquire()
+
+>>>>>>> 23b63c6 (feat: add enhanced version files)
         with counter_lock:
             request_counter += 1
             number = request_counter
 
+<<<<<<< HEAD
         if random_ua:
             user_agent = random.choice(USER_AGENTS)
             curl_cmd = ["curl", "-A", user_agent, "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", str(timeout), "-L", full_url]
         else:
             curl_cmd = ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", str(timeout), "-L", full_url]
+=======
+        # build curl command
+        curl_cmd = ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "--max-time", str(timeout), "-L"]
+
+        if random_ua:
+            user_agent = random.choice(USER_AGENTS)
+            curl_cmd += ["-A", user_agent]
+
+        for h in custom_headers:
+            curl_cmd += ["-H", h]
+
+        curl_cmd.append(full_url)
+>>>>>>> 23b63c6 (feat: add enhanced version files)
 
         try:
             result = subprocess.check_output(curl_cmd)
@@ -171,9 +240,16 @@ def scan_url(target_domain, path_queue, results, timeout=5, random_ua=False):
         except subprocess.CalledProcessError:
             print(colored(f"[{number}] {full_url} -> (Connection Failed)", "red", attrs=["bold"]))
 
+<<<<<<< HEAD
         path_queue.task_done()
 
 def admin_panel_buster(target_domain, threads, random_ua):
+=======
+        finally:
+            path_queue.task_done()
+
+def admin_panel_buster(target_domain, threads, random_ua, rps, timeout, custom_headers):
+>>>>>>> 23b63c6 (feat: add enhanced version files)
     paths = fetch_admin_paths()
     q = queue.Queue()
     for path in paths:
@@ -186,8 +262,19 @@ def admin_panel_buster(target_domain, threads, random_ua):
     os.makedirs(domain_folder, exist_ok=True)
     output_file = os.path.join(domain_folder, "found_panels.txt")
 
+<<<<<<< HEAD
     for _ in range(threads):
         t = Thread(target=scan_url, args=(target_domain, q, results, 5, random_ua))
+=======
+    limiter = RateLimiter(rps)
+
+    for _ in range(threads):
+        t = Thread(
+            target=scan_url,
+            args=(target_domain, q, results, timeout, random_ua, limiter, custom_headers),
+            daemon=True,
+        )
+>>>>>>> 23b63c6 (feat: add enhanced version files)
         thread_list.append(t)
         t.start()
 
@@ -210,6 +297,12 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--target", help="Target domain (e.g., example.com)")
     parser.add_argument("-th", "--threads", type=int, default=5, help="Number of threads (default: 5)")
     parser.add_argument("-ua", "--random-agent", action="store_true", help="Use random realistic User-Agent")
+<<<<<<< HEAD
+=======
+    parser.add_argument("--rps", type=int, help="Global requests per second limit (e.g., 5)")
+    parser.add_argument("--header", action="append", help="Custom header (repeatable), e.g., --header 'X-Api-Key: 123' --header 'X-Foo: bar'")
+    parser.add_argument("--timeout", type=int, default=5, help="Per-request timeout in seconds (default: 5)")
+>>>>>>> 23b63c6 (feat: add enhanced version files)
     parser.add_argument("-h", "--help", action="store_true", help="Show help message and exit")
     ARGS = parser.parse_args()
 
@@ -220,4 +313,15 @@ if __name__ == "__main__":
     print_rainbow_banner()
     check_internet_connection()
     countdown()
+<<<<<<< HEAD
     admin_panel_buster(ARGS.target, ARGS.threads, ARGS.random_agent)
+=======
+    admin_panel_buster(
+        ARGS.target,
+        ARGS.threads,
+        ARGS.random_agent,
+        ARGS.rps,
+        ARGS.timeout,
+        ARGS.header or [],
+    )
+>>>>>>> 23b63c6 (feat: add enhanced version files)
