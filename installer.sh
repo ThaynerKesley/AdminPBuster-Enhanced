@@ -14,9 +14,6 @@ chmod +x AdminPBuster.py
 echo -e "\nInstallation complete!" | lolcat
 echo "Run tool: ./AdminPBuster -t example.com -th 10" | lolcat
 echo "Run with random agent: ./AdminPBuster.py -t example.com -th 10 -ua" | lolcat
-<<<<<<< HEAD
-=======
 echo "Run with custom request per second: ./AdminPBuster.py -t example.com -th 10 -ua --rps 5" | lolcat
 echo "Run with custom header: ./AdminPBuster.py -t example.com -th 10 -ua --rps 5 --header "X-Intigriti-Username: researcher@intigriti.me" \
   --header "Referer: https://exampletarget.com/search?q=test"" | lolcat
->>>>>>> 23b63c6 (feat: add enhanced version files)
